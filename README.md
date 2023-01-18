@@ -26,6 +26,9 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### send(phone_number, carrier, message):
 - Handles the server connection, Gmail connection and message sending
 - all three parameters should be strings
+  - phone_number: no spaces or non-number characters
+  - carrier: must match one in the dictionary
+  - message: anything in string form
 - returns bool
 ### check_phone_number(phone_number):
 - Ensures phone_number formatting is correct
@@ -43,3 +46,26 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### CARRIERS (string-Dictionary):
 - Holds Email-SMS conversion addresses for each provider
 - Really only need one for each, but i provided different case usage for variability sake
+##USING Python_SMS(sendSMS.py)
+- Assuming your Gmail and App Password are Valid
+### main.py
+```
+import SMS
+
+recipient_phone_number = '1234567890'
+
+recipient_carrier = 'Verizon'
+
+message_to_send = 'Test Message from sendSMS.py'
+
+SMS.send(recipient_phone_number, recipient_carrier, message_to_send)
+```
+### Console Output:
+```
+1234567890 is valid
+Verizon is valid
+Login Successful
+Send Successful
+
+check phone in a few seconds and the message should be there
+```
