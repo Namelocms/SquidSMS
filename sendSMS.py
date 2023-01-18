@@ -1,5 +1,5 @@
 # Author: https://github.com/Namelocms
-# Last updated: 01/18/2022
+# Last updated: 01/18/2023
 # GitHub Repository: https://github.com/Namelocms/Python_SMS
 
 import smtplib as smt
