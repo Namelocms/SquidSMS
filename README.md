@@ -48,6 +48,7 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 - Really only need one for each, but i provided different case usage for variability sake
 ##USING Python_SMS(sendSMS.py)
 - Assuming your Gmail and App Password are Valid
+- Assuming the phone number and carrier are valid
 ### main.py
 ```
 import SMS
@@ -69,3 +70,4 @@ Send Successful
 
 check phone in a few seconds and the message should be there
 ```
+# Feedback is appreciated if you have ideas to improve this!
