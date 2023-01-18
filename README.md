@@ -50,7 +50,7 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 - Assuming your Gmail and App Password are Valid
 - Assuming the phone number and carrier are valid
 ### main.py
-```
+```python
 import SMS
 
 recipient_phone_number = '1234567890'
