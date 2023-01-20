@@ -13,14 +13,14 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 - Cannot check if phone number is real,
 - Cannot receive messages from recipient phone number
 ## Documentation
-### SMTP Library: https://docs.python.org/3/library/smtplib.html
+### [SMTP Library](https://docs.python.org/3/library/smtplib.html)
 - Used to setup secure connection to Google's SMTP Server and send the message
-### Gmail App Password: https://support.google.com/accounts/answer/185833?hl=en
+### [Gmail App Password](https://support.google.com/accounts/answer/185833?hl=en)
 - Required for access to the Gmail Account, I would reccomend creating a burner account so anything important is not compromised if something goes wrong or the password is somehow leaked.
 - You will need to setup 2-Factor Verification to access App Passwords
-### Colorama: https://pypi.org/project/colorama/
+### [Colorama](https://pypi.org/project/colorama/)
 - For coloring diagnostic text (NOT REQUIRED FOR PROGRAM TO RUN)
-### Datetime: https://docs.python.org/3/library/datetime.html
+### [Datetime](https://docs.python.org/3/library/datetime.html)
 - For diagnostics (NOT REQUIRED FOR PROGRAM TO RUN)
 ## Functions
 ### send(phone_number, carrier, message):
