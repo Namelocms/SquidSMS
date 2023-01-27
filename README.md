@@ -70,4 +70,4 @@ Send Successful
 
 check phone in a few seconds and the message should be there
 ```
-# Feedback is appreciated if you have ideas to improve this!
+# Feedback is appreciated!
