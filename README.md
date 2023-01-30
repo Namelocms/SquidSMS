@@ -71,8 +71,8 @@ Send Successful
 check phone in a few seconds and the message should be there
 ```
 ## Roadmap
-☐ Implement custom GUI
-☐ Add ability to recieve messages (if possible)
-☐ Add ability to check message recieved by target number (if possible)
-☐ Add ability to check number is in service before sending
+### ☐ Implement custom GUI
+### ☐ Add ability to recieve messages (if possible)
+### ☐ Add ability to check message recieved by target number (if possible)
+### ☐ Add ability to check number is in service before sending
 # Feedback is appreciated!
