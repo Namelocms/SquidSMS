@@ -98,9 +98,8 @@ def check_phone_number(phone_number):
 
 # Check carrier is valid
 def check_carrier(carrier):
-	for c in CARRIERS:
-		if c == carrier:
-			print(Fore.GREEN + carrier + ' is valid' + Style.RESET_ALL)
-			return True
+	if carrier in CARRIERS:
+		print(Fore.GREEN + carrier + ' is valid' + Style.RESET_ALL)
+		return True
 	print(Fore.RED + carrier + ' is invalid' + Style.RESET_ALL)
 	return False
