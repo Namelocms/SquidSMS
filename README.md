@@ -71,5 +71,5 @@ Send Successful
 check phone in a few seconds and the message should be there
 ```
 ## Roadmap
-- Implement custom GUI
+☐ Implement custom GUI
 # Feedback is appreciated!
