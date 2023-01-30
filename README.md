@@ -51,15 +51,20 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 - Assuming the phone number and carrier are valid
 ### main.py
 ```python
-import SMS
+from SMS import SendSMS
 
+#                     your email         your app password
+sendTest = SendSMS('example@gmail.com', 'oiu12dmi12p9knao')
+
+# target number
 recipient_phone_number = '1234567890'
 
+# target carrier
 recipient_carrier = 'Verizon'
 
 message_to_send = 'Test Message from sendSMS.py'
 
-SMS.send(recipient_phone_number, recipient_carrier, message_to_send)
+sendTest.send(recipient_phone_number, recipient_carrier, message_to_send)
 ```
 ### Console Output:
 ```
