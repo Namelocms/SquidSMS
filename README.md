@@ -88,9 +88,9 @@ recipient_carrier = 'Verizon'
 my_message = 'Wow this is pretty cool!'
 
 # If the send is successful, call function to disconnect from server
-result = test.send(server, recipient_number, recipient_carrier, my_message)
+result = initializeClass.send(server, recipient_number, recipient_carrier, my_message)
 if result:
-    test.disconnect(server)
+    initializeClass.disconnect(server)
 ```
 ### Console Output:
 ```
