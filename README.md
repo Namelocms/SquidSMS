@@ -12,9 +12,26 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 - Cannot check if message was received,
 - Cannot check if phone number is real,
 - Cannot receive messages from recipient phone number
+- [Message sends limited by gmail](https://support.google.com/a/answer/2956491#sendinglimitsforrelay&zippy=%2Creview-sending-limits-for-the-smtp-relay-service)
+- Sending with .format() leads to unintended message contents:
+  ```python
+  client_name = 'Bob'
+  
+  message = 'Hi {}, you're awesome!'.format(client_name)
+  
+  # Intended message: Hi Bob, you're awesome!
+  
+  # Actual message: Hi Bob, you're awesome!
+  #                 X-CMAE-Envelope:
+  #                 MWi19ow8hdinjasdiuioais
+  #                 mOIaundaoiudnaoinsdao1/
+  #                 W<M)D_!JI_!_JIDNU#I#KAJ
+  
+  ```
 ## Documentation
 ### [SMTP Library](https://docs.python.org/3/library/smtplib.html)
 - Used to setup secure connection to Google's SMTP Server and send the message
+- [Some possible Error Codes](https://www.arclab.com/en/kb/email/smtp-response-codes-error-messages.html#:~:text=SMTP%20Error%20221&text=Error%20221%20is%20an%20authentication,and%20user%2Fpassword%20is%20correct.)
 ### [Gmail App Password](https://support.google.com/accounts/answer/185833?hl=en)
 - Required for access to the Gmail Account, I would reccomend creating a burner account so anything important is not compromised if something goes wrong or the password is somehow leaked.
 - You will need to setup 2-Factor Verification to access App Passwords
@@ -23,8 +40,12 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### [Datetime](https://docs.python.org/3/library/datetime.html)
 - For diagnostics (NOT REQUIRED FOR PROGRAM TO RUN)
 ## Functions
+### connect():
+- Handles SMTP Server connection, Gmail Login
+- returns server object if successful
+- returns tuple with disconnect code at index 0 if failure (code 221 is normal for this style disconnect)
 ### send(phone_number, carrier, message):
-- Handles the server connection, Gmail connection and message sending
+- Handles the message sending
 - all three parameters should be strings
   - phone_number: no spaces or non-number characters
   - carrier: must match one in the dictionary
@@ -36,6 +57,9 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### check_carrier(carrier):
 - Ensures carrier is valid
 - returns bool
+### disconnect(server):
+- Handles disconnection from SMTP Server
+- returns nothing
 ## Constants
 ### AUTH_EMAIL (string):
 - The email address you want to use in sending the SMS
@@ -46,25 +70,27 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### CARRIERS (string-Dictionary):
 - Holds Email-SMS conversion addresses for each provider
 - Really only need one for each, but i provided different case usage for variability sake
-# USING Python_SMS(sendSMS.py)
+# Example using PythonSMS
 - Assuming your Gmail and App Password are Valid
 - Assuming the phone number and carrier are valid
 ### main.py
 ```python
 from SMS import SendSMS
 
-#                     your email         your app password
-sendTest = SendSMS('example@gmail.com', 'oiu12dmi12p9knao')
+initializeClass = SendSMS('your_gmail', 'your_app_password')
 
-# target number
-recipient_phone_number = '1234567890'
+# Connect to SMTP server and store it
+server = test.connect()
 
-# target carrier
+# Parameters should all be strings
+recipient_number = '1234567890'
 recipient_carrier = 'Verizon'
+my_message = 'Wow this is pretty cool!'
 
-message_to_send = 'Test Message from sendSMS.py'
-
-sendTest.send(recipient_phone_number, recipient_carrier, message_to_send)
+# If the send is successful, call function to disconnect from server
+result = test.send(server, recipient_number, recipient_carrier, my_message)
+if result:
+    test.disconnect(server)
 ```
 ### Console Output:
 ```
@@ -72,6 +98,7 @@ sendTest.send(recipient_phone_number, recipient_carrier, message_to_send)
 Verizon is valid
 Login Successful
 Send Successful
+SMTP Server Connection Ended!
 
 check phone in a few seconds and the message should be there
 ```
