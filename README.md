@@ -77,7 +77,10 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ```python
 from SMS import SendSMS
 
-initializeClass = SendSMS('your_gmail', 'your_app_password')
+your_gmail = 'example@gmail.com'
+your_app_password = 'oiu12dmi12p9knao'
+
+initializeClass = SendSMS(your_gmail, your_app_password)
 
 # Connect to SMTP server and store it
 server = test.connect()
