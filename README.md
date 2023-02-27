@@ -17,7 +17,7 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
   ```python
   client_name = 'Bob'
   
-  message = 'Hi {}, you're awesome!'.format(client_name)
+  message = 'Hi {}, you\'re awesome!'.format(client_name)
   
   # Intended message: Hi Bob, you're awesome!
   
