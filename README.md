@@ -1,4 +1,4 @@
-# Python_SMS
+# SquidSMS
 ## WARNING, CONSENT IS KEY ;)
 DO NOT USE THIS TO PERFORM ILLEGAL ACTIVITIES SUCH AS:
 - MASS TEXTING
@@ -70,7 +70,18 @@ Sends an SMS message to a desired phone number using your Gmail Account, great f
 ### CARRIERS (string-Dictionary):
 - Holds Email-SMS conversion addresses for each provider
 - Really only need one for each, but i provided different case usage for variability sake
-# Example using PythonSMS
+# Using SquidSMS
+## Valid Numbers
+- This will work with any number which follows the 10-digit format and is covered by one of the available carriers
+  - To change the number format, edit the code at line 131 to an `int` which applies to your situation.
+- DO NOT include country codes in the phone numbers, through my testing with numbers from the USA, +1 country code, this will break the send process.
+## Carriers and Numbers
+- When sending to a number, the number MUST be covered by the selected carrier. If there is a mismatch between carrier and number the message will send but wont be delivered.
+- You can add new carriers to the program by modifying the `CARRIERS` dictionary with the new carrier name and email domain.
+## Email and Password
+- EMAIL: This should be your GMAIL account that you want to use in sending the messages
+- PASSWORD: The App password provided by Google Authentication, should be a 16-character string
+## Example using SquidSMS
 - Assuming your Gmail and App Password are Valid
 - Assuming the phone number and carrier are valid
 ### main.py
@@ -105,6 +116,11 @@ SMTP Server Connection Ended!
 
 check phone in a few seconds and the message should be there
 ```
+## How it Works
+- The recipient's number will be prepended to the email domain address of the chosen carrier like this:
+  - `number = '5551234567', carrier = '@mms.att.net', recipient = '5551234567@mms.att.net'`
+- From there the SMTP server provided by google is connected to, using your email and password, and the message is sent to the new recipient email address
+- The message is then transmitted from that new email address to the phone associated with the number.
 ## Roadmap
 ### ☐ Implement custom GUI
 ### ☐ Add ability to recieve messages (if possible)
