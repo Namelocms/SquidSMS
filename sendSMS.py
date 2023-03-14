@@ -1,6 +1,7 @@
 # Author: https://github.com/Namelocms
 # Last updated: 01/31/2023
 # GitHub Repository: https://github.com/Namelocms/Python_SMS
+# Copyright (c) 2023 Sean Coleman
 
 import smtplib as smt
 import datetime as dt
