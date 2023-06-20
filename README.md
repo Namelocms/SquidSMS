@@ -122,7 +122,7 @@ check phone in a few seconds and the message should be there
 - From there the SMTP server provided by google is connected to, using your email and password, and the message is sent to the new recipient email address
 - The message is then transmitted from that new email address to the phone associated with the number.
 ## Roadmap
-### ☐ Implement custom GUI
+### ✅ Implement custom GUI
 ### ☐ Add ability to recieve messages (if possible)
 ### ☐ Add ability to check message recieved by target number (if possible)
 ### ☐ Add ability to check number is in service before sending
