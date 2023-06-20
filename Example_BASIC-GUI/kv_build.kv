@@ -1,0 +1,517 @@
+<LoginScreen>:
+    name: "login"
+
+    gmail: gmail
+    app_pass: app_pass
+
+    FloatLayout:
+        Label:
+            text: 'GMAIL'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            id: gmail
+            multiline: False
+            size_hint: (.65, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+
+        Label:
+            text: 'APP PASSWORD'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.58}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            id: app_pass
+            multiline: False
+            password: True
+            size_hint: (.65, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Button:
+            text: 'ADD ACCOUNT'
+            background_color: '#0377fc'
+            background_normal: ''
+            size_hint: (0.9, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.32}
+            on_release:
+                root.add_account()
+                root.reset_send()
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: 'LOGIN'
+            background_color: '#0377fc'
+            background_normal: ''
+            size_hint: (0.9, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            on_release:
+                root.login()
+                root.reset_send()
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: 'Help'
+            font_size: 12
+            size_hint: (0.1, 0.05)
+            pos_hint: {'top': 1, 'x': 0}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = 'help_login'
+
+        Label:
+            text: 'THIS INFORMATION IS NOT SHARED'
+            color: '#424242'
+            bold: True
+            font_size: 8
+            size_hint: (.5, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+
+<SendScreen>:
+    name: 'send'
+
+    gmail: gmail
+    mobile: mobile
+    carrier: carrier
+    message: message
+    number: number
+
+    FloatLayout:
+        Label:
+            id: gmail
+            size_hint: (0.5, 0.1)
+            pos_hint: {'top': .975, 'x': 0.25}
+            font_size: 10
+            color: '#adadad'
+        Button:
+            text: 'Switch Account'
+            font_size: 12
+            size_hint: (0.2, 0.05)
+            pos_hint: {'top': 1, 'x': (0.5 * 0.8)}
+            on_release:
+                root.manager.transition.direction = "down"
+                root.reset_previous()
+                root.manager.current = 'login'
+
+        Label:
+            text: 'MOBILE'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.27, 'center_y': 0.83}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            id: mobile
+            multiline: False
+            size_hint: (.19, 0.1)
+            pos_hint: {'center_x': 0.27, 'center_y': 0.75}
+        Label:
+            text: 'No \'-\', spaces, or country codes'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.25, 'center_y': 0.685}
+            font_size: 10
+            color: '#8a8a8a'
+
+        Label:
+            text: 'CARRIER'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.73, 'center_y': 0.83}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            id: carrier
+            multiline: False
+            size_hint: (.19, 0.1)
+            pos_hint: {'center_x': 0.73, 'center_y': 0.75}
+
+        Label:
+            text: 'MESSAGE'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.66}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            id: message
+            multiline: True
+            size_hint: (.65, 0.4)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.42}
+
+        Label:
+            text: '# TO SEND'
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.83}
+            font_size: 18
+            color: '#8a8a8a'
+        TextInput:
+            text: '1'
+            id: number
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+        Button:
+            text: '+'
+            size_hint: (0.05, 0.1)
+            pos_hint: {'center_x': 0.43, 'center_y': 0.75}
+            on_release: root.add_one()
+        Button:
+            text: '-'
+            size_hint: (0.05, 0.1)
+            pos_hint: {'center_x': 0.57, 'center_y': 0.75}
+            on_release: root.sub_one()
+
+        Button:
+            text: 'SEND'
+            background_color: '#0377fc'
+            background_normal: ''
+            size_hint: (0.9, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.12}
+            on_release:
+                root.send_message()
+                root.manager.transition.direction = "up"
+
+        Button:
+            text: 'Reset All'
+            font_size: 12
+            size_hint: (0.17, 0.05)
+            pos_hint: {'top': 0.94, 'x': 0.83}
+            on_release:
+                root.reset_all()
+        Button:
+            text: 'Reset Message'
+            font_size: 12
+            size_hint: (0.17, 0.05)
+            pos_hint: {'top': 1, 'x': 0.83}
+            on_release:
+                root.reset_message()
+
+        Button:
+            text: 'Help'
+            font_size: 12
+            size_hint: (0.1, 0.05)
+            pos_hint: {'top': 1, 'x': 0}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = 'help_send'
+
+        Label:
+            text: 'THIS INFORMATION IS NOT SHARED'
+            color: '#424242'
+            bold: True
+            font_size: 8
+            size_hint: (.5, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.03}
+
+<ConfirmScreen>:
+    name: 'confirmed'
+
+    gmail: gmail
+    app_pass: app_pass
+    message: message
+    mobile: mobile
+    carrier: carrier
+    number: number
+
+    FloatLayout:
+        Button:
+            text: 'Back to Send'
+            font_size: 12
+            size_hint: (0.2, 0.05)
+            pos_hint: {'top': 1, 'x': (0.5 * 0.8)}
+            on_release:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'send'
+        
+        Label:
+            text: 'Server Status:'
+            font_size: 15
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.4, 'center_y': 0.85}
+        Label:
+            text: 'Disconnected'
+            font_size: 15
+            color: '#2cbf15'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.6, 'center_y': 0.85}
+
+        Label:
+            text: 'Send Status:'
+            font_size: 15
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.4, 'center_y': 0.75}
+        Label:
+            text: 'Successful ({})'.format(number.text)
+            font_size: 15
+            color: '#2cbf15'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.6, 'center_y': 0.75}
+
+        Button:
+            id: gmail
+            font_size: 12
+            size_hint: (0.3, 0.2)
+            pos_hint: {'center_x': 0.2, 'center_y': 0.5}
+
+####################################################################
+# FIXME: REMOVE BELOW PLACEHOLDERS
+####################################################################
+
+        Label:
+            text: 'Diagnostics:'
+            font_size: 12
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: gmail
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: app_pass
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.82}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: mobile
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: carrier
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.74}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: number
+            color: '#8a8a8a'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.70}
+
+        Label:
+            text: ''
+            font_size: 10
+            id: message
+            multiline: True
+            color: '#8a8a8a'
+            text_size: mm(52), cm(5)
+            halign: 'left'
+            valign: 'top'
+            size_hint: (0.1, 0.1)
+            pos_hint: {'center_x': 0.5, 'top': 0.42}
+
+        Button:
+            text: 'Help'
+            font_size: 12
+            size_hint: (0.1, 0.05)
+            pos_hint: {'top': 1, 'x': 0}
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = 'help_confirmed'
+
+        Label:
+            text: 'THIS INFORMATION IS NOT SHARED'
+            color: '#424242'
+            bold: True
+            font_size: 8
+            size_hint: (.5, 0.1)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.03}
+
+<HelpScreen1>
+    name: 'help_login'
+
+    FloatLayout:
+        Button:
+            text: 'Back to Login'
+            font_size: 12
+            size_hint: (0.2, 0.05)
+            pos_hint: {'top': 1, 'x': (0.5 * 0.8)}
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = 'login'
+
+        Label:
+            text: 'Helpful Links:'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
+        Button:
+            text: 'PythonSMS GitHub'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(28), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.68}
+            on_release: root.app_pass_link()
+        Button:
+            text: 'Email/Password'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(25), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.68}
+            on_release: root.app_pass_link()
+
+
+<HelpScreen2>
+    name: 'help_send'
+
+    FloatLayout:
+        Button:
+            text: 'Back to Send'
+            font_size: 12
+            size_hint: (0.2, 0.05)
+            pos_hint: {'top': 1, 'x': (0.5 * 0.8)}
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = 'send'
+
+        Label:
+            text: 'Helpful Links:'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
+        Button:
+            text: 'PythonSMS GitHub'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(28), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.68}
+            on_release: root.errors_link()
+        Button:
+            text: 'Error Codes'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(18), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.68}
+            on_release: root.errors_link()
+
+        Label:
+            text: 'Input Reference:'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.58}
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+            on_release: root.valid_carriers_pop()
+        Button:
+            text: 'Valid Carriers'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(20), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.48}
+            on_release: root.valid_carriers_pop()
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.38}
+            on_release: root.valid_carriers_pop()
+        Button:
+            text: 'Valid Numbers'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(23), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.38}
+            on_release: root.valid_numbers_pop()
+
+<HelpScreen3>
+    name: 'help_confirmed'
+
+    FloatLayout:
+        Button:
+            text: 'Back to Confirmed'
+            font_size: 11
+            size_hint: (0.2, 0.05)
+            pos_hint: {'top': 1, 'x': (0.5 * 0.8)}
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = 'confirmed'
+
+        Label:
+            text: 'Helpful Links:'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.88}
+
+        Button:
+            background_color: '#8f8f8f'
+            background_normal: ''
+            size_hint: (0.31, 0.085)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
+        Button:
+            text: 'PythonSMS GitHub'
+            font_size: 12
+            background_color: '#0377fc'
+            background_normal: ''
+            text_size: mm(28), cm(5)
+            valign: 'center'
+            halign: 'left'
+            size_hint: (0.3, 0.075)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
+            on_release: root.git_link()
