@@ -1,13 +1,13 @@
 # Author: https://github.com/Namelocms
 # Last updated: 01/31/2023
-# GitHub Repository: https://github.com/Namelocms/Python_SMS
+# GitHub Repository: https://github.com/Namelocms/Squid_SMS
 # Copyright (c) 2023 Sean Coleman
 
 import smtplib as smt
 import datetime as dt
 from colorama import Fore, Style
 
-class SendSMS:
+class SquidSMS:
 	def __init__(self, email, password):
 		# Cellular Service Providers
 		self.CARRIERS = {
