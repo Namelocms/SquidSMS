@@ -1,0 +1,1 @@
+Provides an example usage in a GUI desktop application, reference the [SquidSMS README](https://github.com/Namelocms/SquidSMS/blob/main/README.md) for information on the functions used in facilitating the SMS message sending.
