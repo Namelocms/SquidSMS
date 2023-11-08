@@ -22,7 +22,7 @@ import smtplib as smt  # Server connections
 ##########################################################################################
 # Server Connection/Send Message Class
 ##########################################################################################
-class SendSMS:
+class SquidSMS:
     def __init__(self, email, password):
         # Cellular Service Providers
         self.CARRIERS = {
@@ -164,7 +164,7 @@ class LoginScreen(Screen):
         a = self.app_pass.text.strip()
 
         # used to check format of gmail and password, cleared after use
-        temp_auth = SendSMS(g, a)
+        temp_auth = SquidSMS(g, a)
 
         # Check formatting is correct
         if temp_auth.check_email(g) is False or temp_auth.check_password(a) is False:
@@ -200,7 +200,7 @@ class LoginScreen(Screen):
         a = self.app_pass.text.strip()
 
         # used to check format of gmail and password, cleared after use
-        temp_auth = SendSMS(g, a)
+        temp_auth = SquidSMS(g, a)
 
         if temp_auth.check_email(g) is False:
             pop = Popup(title='EMAIL ADDRESS INVALID',
@@ -294,8 +294,8 @@ class SendScreen(Screen):
         # initialize recipient
         recipient = ''
 
-        # initialize SendSMS class
-        key = SendSMS(gmail, app_pass)
+        # initialize SquidSMS class
+        key = SquidSMS(gmail, app_pass)
 
         # check message amount
         if self.check_number() is False:
@@ -453,7 +453,7 @@ class HelpScreen3(Screen):
 
 
 # Class name is window name
-class SquidSMS(App):
+class SquidSMS_GUI(App):
     def build(self):
         self.icon = 'Emphasis.png'
         return sm
@@ -516,4 +516,4 @@ class SquidSMS(App):
 # Main Loop
 ########################################################################################################################
 if __name__ == "__main__":
-    SquidSMS().run()
+    SquidSMS_GUI().run()
