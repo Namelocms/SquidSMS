@@ -27,7 +27,7 @@ Before using SquidSMS, make sure you have the necessary dependencies:
   - You will need to setup 2-Factor Verification to access App Passwords through Google
 
 ## Documentation
-### Class: SendSMS
+### Class: SquidSMS
 #### Methods
 | Method                | Description                                                                             | Parameters                                     | Returns |
 |-----------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------|---------|
