@@ -31,7 +31,7 @@ Before using SquidSMS, make sure you have the necessary dependencies:
 #### Methods
 | Method                | Description                                                                             | Parameters                                     | Returns |
 |-----------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------|---------|
-| `__init__`           | Initializes the SendSMS class, sets up the `CARRIERS` dictionary, and assigns the authentication values                            | `email` (string), `password` (string)                                            | None    |
+| `__init__`           | Initializes the SquidSMS class, sets up the `CARRIERS` dictionary, and assigns the authentication values                            | `email` (string), `password` (string)                                            | None    |
 | `connect()`           | Connects to the SMTP server using Gmail account credentials.                            | None                                            | Server object or tuple with disconnect code    |
 | `send()`              | Sends an SMS message. Checks phone number and carrier validity.                         | `phone_number` (string), `carrier` (string), `message` (string) | Boolean (success status)                        |
 | `check_phone_number()`| Checks if the provided phone number is correctly formatted (10-digit format).            | `phone_number` (string)                        | Boolean (validity)                              |
