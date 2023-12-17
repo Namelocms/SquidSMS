@@ -206,7 +206,7 @@
     name: 'confirmed'
 
     gmail: gmail
-    app_pass: app_pass
+    # app_pass: app_pass
     message: message
     mobile: mobile
     carrier: carrier
@@ -221,102 +221,6 @@
             on_release:
                 root.manager.transition.direction = "down"
                 root.manager.current = 'send'
-        
-        Label:
-            text: 'Server Status:'
-            font_size: 15
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.4, 'center_y': 0.85}
-        Label:
-            text: 'Disconnected'
-            font_size: 15
-            color: '#2cbf15'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.6, 'center_y': 0.85}
-
-        Label:
-            text: 'Send Status:'
-            font_size: 15
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.4, 'center_y': 0.75}
-        Label:
-            text: 'Successful ({})'.format(number.text)
-            font_size: 15
-            color: '#2cbf15'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.6, 'center_y': 0.75}
-
-        Button:
-            id: gmail
-            font_size: 12
-            size_hint: (0.3, 0.2)
-            pos_hint: {'center_x': 0.2, 'center_y': 0.5}
-
-####################################################################
-# FIXME: REMOVE BELOW PLACEHOLDERS
-####################################################################
-
-        Label:
-            text: 'Diagnostics:'
-            font_size: 12
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.9}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: gmail
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.85}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: app_pass
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.82}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: mobile
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.78}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: carrier
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.74}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: number
-            color: '#8a8a8a'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.70}
-
-        Label:
-            text: ''
-            font_size: 10
-            id: message
-            multiline: True
-            color: '#8a8a8a'
-            text_size: mm(52), cm(5)
-            halign: 'left'
-            valign: 'top'
-            size_hint: (0.1, 0.1)
-            pos_hint: {'center_x': 0.5, 'top': 0.42}
-
         Button:
             text: 'Help'
             font_size: 12
@@ -325,7 +229,6 @@
             on_release:
                 root.manager.transition.direction = "right"
                 root.manager.current = 'help_confirmed'
-
         Label:
             text: 'THIS INFORMATION IS NOT SHARED'
             color: '#424242'
@@ -333,6 +236,56 @@
             font_size: 8
             size_hint: (.5, 0.1)
             pos_hint: {'center_x': 0.5, 'center_y': 0.03}
+        Label:
+            text: 'Message'
+            font_size: 20
+            underline: True
+            color: '#8a8a8a'
+            pos_hint: {'center_x': 0.75, 'center_y': 0.8}
+
+    GridLayout:
+        cols: 2
+        padding: 40
+        spacing: 10
+        GridLayout:
+            rows: 5
+            cols: 1
+            
+            Label:
+                text: 'Send Info'
+                font_size: 20
+                underline: True
+                color: '#8a8a8a'
+            Button:
+                id: gmail
+                bold: True
+                color: '#8a8a8a'
+            Button:
+                id: number
+                bold: True
+                color: '#8a8a8a'
+            Button:
+                id: mobile
+                bold: True
+                color: '#8a8a8a'
+            Button:
+                id: carrier
+                bold: True
+                color: '#8a8a8a'
+                
+        GridLayout:
+            cols: 1
+            padding: [0, 30, 0, 0]
+            ScrollView:
+                size_hint: (1, 1)
+                Label:
+                    id: message
+                    italic: True
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    text_size: self.width, None
+                    multiline: True
+                    color: '#8a8a8a'
 
 <HelpScreen1>
     name: 'help_login'
