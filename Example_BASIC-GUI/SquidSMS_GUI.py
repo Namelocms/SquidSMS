@@ -378,7 +378,7 @@ class SendScreen(Screen):
 class ConfirmScreen(Screen):
     # Declare variables
     gmail = ObjectProperty(None)
-    app_pass = ObjectProperty(None)
+    # app_pass = ObjectProperty(None)
     message = ObjectProperty(None)
     mobile = ObjectProperty(None)
     carrier = ObjectProperty(None)
@@ -387,7 +387,7 @@ class ConfirmScreen(Screen):
     # Upon entering this screen, set current diagnostic values
     def on_enter(self, *args):
         g = self.gmail.text = sm.screens[0].gmail.text  # current gmail
-        a = self.app_pass.text = sm.screens[0].app_pass.text  # current app_password
+        # a = self.app_pass.text = sm.screens[0].app_pass.text  # current app_password
         me = self.message.text = sm.screens[1].message.text  # current message
         mo = self.mobile.text = sm.screens[1].mobile.text  # current mobile number
         c = self.carrier.text = sm.screens[1].carrier.text  # current carrier
