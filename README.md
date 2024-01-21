@@ -114,4 +114,4 @@ check phone in a few seconds and the message should be there
   
   ```
 
-**Copyright**: © 2023 Sean Coleman <br> **Last Updated**: 01/31/2023
+**Copyright**: © 2023 Sean Coleman
