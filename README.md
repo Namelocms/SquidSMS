@@ -18,10 +18,9 @@ Before using SquidSMS, make sure you have the necessary dependencies:
   - ```bash
     pip install smtplib
   - [Some possible Error Codes](https://www.arclab.com/en/kb/email/smtp-response-codes-error-messages.html#:~:text=SMTP%20Error%20221&text=Error%20221%20is%20an%20authentication,and%20user%2Fpassword%20is%20correct.)
-- [Colorama](https://pypi.org/project/colorama/) for colorful console output.
+- [Logging]() `logging` for debug messages throughout the send process (replaces print statements of previous versions)
   - ```bash
-    pip install colorama
-- Python's [Datetime](https://docs.python.org/3/library/datetime.html) for diagnostics.
+    pip install logging
 - [Gmail App Password](https://support.google.com/accounts/answer/185833?hl=en)
   - Required for access to the Gmail Account, I would reccomend creating a burner account so anything important is not compromised if something goes wrong or the password is somehow leaked.
   - You will need to setup 2-Factor Verification to access App Passwords through Google
@@ -33,7 +32,7 @@ Before using SquidSMS, make sure you have the necessary dependencies:
 |-----------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------|---------|
 | `__init__`           | Initializes the SquidSMS class, sets up the `CARRIERS` dictionary, and assigns the authentication values                            | `email` (string), `password` (string)                                            | None    |
 | `connect()`           | Connects to the SMTP server using Gmail account credentials.                            | None                                            | Server object or tuple with disconnect code    |
-| `send()`              | Sends an SMS message. Checks phone number and carrier validity.                         | `phone_number` (string), `carrier` (string), `message` (string) | Boolean (success status)                        |
+| `send()`              | Sends an SMS message. Checks phone number and carrier validity.                         | `server` (smtp server object), `phone_number` (string), `carrier` (string), `message` (string) | Boolean (success status)                        |
 | `check_phone_number()`| Checks if the provided phone number is correctly formatted (10-digit format).            | `phone_number` (string)                        | Boolean (validity)                              |
 | `check_carrier()`     | Checks if the provided carrier is valid and supported.                                  | `carrier` (string)                             | Boolean (validity)                              |
 | `disconnect()`        | Handles the disconnection from the SMTP server.                                        | `server` (object)                              | None    |
@@ -56,13 +55,13 @@ Before using SquidSMS, make sure you have the necessary dependencies:
 ## Example
 **main.py:**
   ```python
-  from SMS import SendSMS
+  from SquidSMS import SquidSMS
 
   your_gmail = 'example@gmail.com'
   your_app_password = 'oiu12dmi12p9knao'
 
   # Initialize the class
-  example = SendSMS(your_gmail, your_app_password)
+  example = SquidSMS(your_gmail, your_app_password)
 
   # Connect to SMTP server and store it
   server = example.connect()
@@ -76,14 +75,11 @@ Before using SquidSMS, make sure you have the necessary dependencies:
   result = example.send(server, recipient_number, recipient_carrier, my_message)
   if result:
     example.disconnect(server)
+    print('send successful?', result)
   ```
 **Console Output:**
 ```
-1234567890 is valid
-Verizon is valid
-Login Successful
-Send Successful
-SMTP Server Connection Ended!
+send successful? True
 
 check phone in a few seconds and the message should be there
 ```
@@ -113,5 +109,6 @@ check phone in a few seconds and the message should be there
   #                 W<M)D_!JI_!_JIDNU#I#KAJ
   
   ```
+- Sends can occasionally take several hours due to SMTP service issues
 
-**Copyright**: © 2023 Sean Coleman
+**Copyright**: © 2024 Sean Coleman
