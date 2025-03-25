@@ -1,5 +1,7 @@
 # SquidSMS
 SquidSMS is a Python-based SMS sending tool that allows you to send SMS messages using a Gmail account. It provides a convenient way to send quick reminders and information to yourself or other **consenting** parties. The tool is designed to be easy to use and provides functionality for connecting to the SMTP server, sending messages, validating phone numbers, and validating carriers.
+#### [SquidSMS GUI](https://github.com/Namelocms/SquidSMS/tree/main/Example_BASIC-GUI)
+This provides a quick and easy way to get right into the action with an intuitive desktop application!
 
 ## Disclaimer
 - Please use this tool responsibly and in accordance with applicable laws and regulations. Do not use it for illegal activities.
