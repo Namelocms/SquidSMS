@@ -5,7 +5,7 @@ Provides an example usage in a GUI desktop application, reference the [SquidSMS 
 - kv_build.kv
 ## Not required
 - Emphasis.png (For the window icon)
-
+- Logging (Only used in the main SquidSMS script)
 
 ## Login screen for the GUI
 ![SquidSMS_GUI_LoginScreen](https://github.com/user-attachments/assets/9e932494-a5c9-450f-8ef9-48951f3c6d1b)
