@@ -1,6 +1,7 @@
 Provides an example usage in a GUI desktop application, reference the [SquidSMS README](https://github.com/Namelocms/SquidSMS/blob/main/README.md) for information on the functions used in facilitating the SMS message sending or any other information.
 
 # Required to run (Make sure these are in the same folder)
+- [Kivy GUI](https://kivy.org/) (`pip install kivy`)
 - SquidSMS_GUI.py
 - kv_build.kv
 ## Not required
